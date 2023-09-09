@@ -1,12 +1,18 @@
+import os #載入operating system
+
 #讀取檔案
 items = []
-with open('items.csv', 'r', encoding='utf-8') as f:
-    for line in f:
-        if 'Product name,Price' in line:
-            continue  #continue/break都必須在迴圈裡意指跳出或跳過
-        name, price = line.strip().split(',')
-        items.append([name, price])
-print(items)
+if os.path.isfile('items.csv'): #檢查檔案在不在
+    print('yeah I found it!')
+    with open('items.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            if 'Product name,Price' in line:
+                continue  #continue/break都必須在迴圈裡意指跳出或跳過
+            name, price = line.strip().split(',')
+            items.append([name, price])
+    print(items)
+else:
+    print('oops ! the file is missing.')
 
 #讓使用者輸入
 while True:
